@@ -16,7 +16,7 @@ module EpmhbServer
       generate.test_framework :rspec
       generate.helper false
       generate.stylesheets false
-      generate.fixture_replacement :factory_girl
+      generate.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
 
     # Settings in config/environments/* take precedence over those specified here.

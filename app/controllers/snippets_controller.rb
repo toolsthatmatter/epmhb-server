@@ -1,9 +1,11 @@
 class SnippetsController < ApplicationController
 
+  protect_from_forgery :except => :create
+
   # GET /snippets
   # GET /snippets.json
   def index
-    @snippets = Snippet.all
+    @snippets = Snippet.order("post_date DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,47 +13,16 @@ class SnippetsController < ApplicationController
     end
   end
 
-  # POST /snippets
   # POST /snippets.json
   def create
     @snippet = Snippet.new(snippet_params)
 
     respond_to do |format|
       if @snippet.save
-        format.html { redirect_to @snippet, notice: 'Snippet was successfully created.' }
         format.json { render json: @snippet, status: :created, location: @snippet }
       else
-        format.html { render action: "new" }
         format.json { render json: @snippet.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /snippets/1
-  # PATCH/PUT /snippets/1.json
-  def update
-    @snippet = Snippet.find(params[:id])
-
-    respond_to do |format|
-      if @snippet.update_attributes(snippet_params)
-        format.html { redirect_to @snippet, notice: 'Snippet was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @snippet.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /snippets/1
-  # DELETE /snippets/1.json
-  def destroy
-    @snippet = Snippet.find(params[:id])
-    @snippet.destroy
-
-    respond_to do |format|
-      format.html { redirect_to snippets_url }
-      format.json { head :no_content }
     end
   end
 
