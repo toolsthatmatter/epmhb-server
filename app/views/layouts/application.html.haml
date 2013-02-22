@@ -3,8 +3,13 @@
   %head
     %title EpmhbServer
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    = content_for :head_elements_at_bottom do
+      = javascript_include_tag "application"
     = csrf_meta_tags
+
   %body
     #container
       = yield
+
+!= yield :head_elements_at_bottom
+!= yield :bottom

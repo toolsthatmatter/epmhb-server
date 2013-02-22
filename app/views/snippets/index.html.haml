@@ -2,4 +2,8 @@
   %h1 Chronic of Snippets
 
 #snippets
-  = render @snippets
+
+= content_for :bottom do
+  :javascript
+    template = "#{escape_javascript(render "snippets/snippet")}";
+    pm = new app.PollingMachine(5000, $("#snippets"), template);
