@@ -24,7 +24,7 @@ describe SnippetsController do
   # Snippet. As you add validations to Snippet, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "post" => "MyText" }
+    { "post" => "MyText", "post_date" => "2012-05-02" }
   end
 
   # This should return the minimal set of values that should be in the session
