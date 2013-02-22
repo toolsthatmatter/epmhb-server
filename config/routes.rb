@@ -1,5 +1,7 @@
 EpmhbServer::Application.routes.draw do
 
-  #root :to => 'welcome#index'
+  resources :snippets
+
+  root :to => 'snippets#index'
 
 end
